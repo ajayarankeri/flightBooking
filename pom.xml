@@ -12,7 +12,7 @@
 	<artifactId>flightBooking</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>flightBooking</name>
-	<description>Online flightBookin System</description>
+	<description>Online flightBooking</description>
 
 	<properties>
 		<java.version>1.8</java.version>
