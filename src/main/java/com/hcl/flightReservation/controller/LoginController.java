@@ -40,8 +40,12 @@ public class LoginController {
 		try {
 			validateMandatoryElements(userName,password);
 			boolean userStatus= userService.loginUser(userName,password);
+			if(userStatus) {
 			System.out.println("login sucssfully");
-			
+			}else {
+				System.out.println("please check login credential");
+			}
+				
 		} catch (InvalidUserDataException invalid) {
 			return new ResponseEntity<>(invalid.getMessage(), HttpStatus.BAD_REQUEST);
 		} catch(Exception e) {
