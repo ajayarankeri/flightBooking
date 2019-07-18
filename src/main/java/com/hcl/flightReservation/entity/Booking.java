@@ -1,6 +1,7 @@
 package com.hcl.flightReservation.entity;
 
 import java.time.LocalDate;
+import java.util.Iterator;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -40,21 +41,36 @@ public class Booking {
 	@Column(name="booking_date")
 	private LocalDate bookingDate;
 	
-	@OneToMany(mappedBy = "bookingObject", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "bookingObject", cascade = CascadeType.ALL,fetch=FetchType.LAZY)
     private Set<Passenger> passangers;
 	
 	
 
-	public Booking(Flight flightId, User userId, Double totalFare, LocalDate bookingDate,
-			Passenger...passangers) {
+	public Set<Passenger> getPassangers() {
+		return passangers;
+	}
+
+	public void setPassangers(Set<Passenger> passangers) {
+		
+		this.passangers = passangers;
+	}
+
+	public Booking() {
 		super();
+	}
+
+	public Booking(Flight flightId, User userId, Double totalFare, LocalDate bookingDate) {
+		//super();
+		
+		System.out.println("passangesrs"+this);
 		
 		this.flightId = flightId;
 		this.userId = userId;
 		this.totalFare = totalFare;
 		this.bookingDate = bookingDate;
-		this.passangers = Stream.of(passangers).collect(Collectors.toSet());
-		this.passangers.forEach(x -> x.setBookingObject(this));
+		
+	 //	this.passangers = Stream.of(passangers).collect(Collectors.toSet());
+	//	this.passangers.forEach(x -> x.setBookingObject(this));
 	}
 
 	public Long getBookingId() {
