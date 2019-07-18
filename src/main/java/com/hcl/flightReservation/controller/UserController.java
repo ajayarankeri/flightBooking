@@ -7,24 +7,22 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.hcl.flightReservation.entity.Booking;
-import com.hcl.flightReservation.service.BookingService;
+import com.hcl.flightReservation.entity.User;
+import com.hcl.flightReservation.service.UserService;
 
 @RestController
-@RequestMapping("/booking")
-public class BookingController {
-	@Autowired
-	BookingService bookingService;
+	@RequestMapping("/")
+	public class UserController {
+		
+		@Autowired
+		UserService userservice;
 
-	@PostMapping("")
-	public ResponseEntity<Object> saveBooking(@RequestBody Booking booking){
-		
-		
-		
-		bookingService.saveBooking(booking);
-		
-		return new ResponseEntity<> ("record saved sucessfully",HttpStatus.OK);
-		
+		@PostMapping("/register")
+		public ResponseEntity<Object> search(@RequestBody User user) {
+			 userservice.addUser(user);
+			return new ResponseEntity<> ("record saved sucessfully",HttpStatus.OK);
+			
+		}
 	}
-}
+
+

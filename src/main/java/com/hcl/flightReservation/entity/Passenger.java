@@ -20,9 +20,6 @@ public class Passenger {
 	@Column(name="passenger_id")
 	private Long passengerId;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="user_id")
-	private User userId;
 	
 	@Column(name="passenger_name")
 	private String passengerName;
@@ -41,7 +38,7 @@ public class Passenger {
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="booking_id")
-	private Booking booking;
+	private Booking bookingObject;
 
 	public Long getPassengerId() {
 		return passengerId;
@@ -49,14 +46,6 @@ public class Passenger {
 
 	public void setPassengerId(Long passengerId) {
 		this.passengerId = passengerId;
-	}
-
-	public User getUserId() {
-		return userId;
-	}
-
-	public void setUserId(User userId) {
-		this.userId = userId;
 	}
 
 	public String getPassengerName() {
@@ -69,6 +58,14 @@ public class Passenger {
 
 	public String getGender() {
 		return gender;
+	}
+
+	public Booking getBookingObject() {
+		return bookingObject;
+	}
+
+	public void setBookingObject(Booking bookingObject) {
+		this.bookingObject = bookingObject;
 	}
 
 	public void setGender(String gender) {

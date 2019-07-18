@@ -28,7 +28,7 @@ import com.hcl.flightReservation.service.UserService;
 @RestController
 @RequestMapping("/user")
 public class LoginController {
-	
+
 	private static final String MANDETORY_ERR_MSG= "Mandetory element missing : "; 
 	
 	@Autowired
@@ -37,7 +37,6 @@ public class LoginController {
 	@PostMapping("/login")
 	public ResponseEntity<?> loginUser(@RequestParam(value = "userName") String userName,
 			@RequestParam(value = "password") String password) {
-		
 		try {
 			validateMandatoryElements(userName,password);
 			boolean userStatus= userService.loginUser(userName,password);
@@ -53,14 +52,14 @@ public class LoginController {
 
 	// This function will check mandatory elements for login
 	private void validateMandatoryElements(String username, String password) throws InvalidUserDataException {
-		
+
 		if(ObjectUtils.isEmpty(username)) {
 			throw new InvalidUserDataException(MANDETORY_ERR_MSG+" userName");
 		}
-		
+
 		if(ObjectUtils.isEmpty(password)) {
 			throw new InvalidUserDataException(MANDETORY_ERR_MSG+" password");
 		}
-		
+
 	}
 }
