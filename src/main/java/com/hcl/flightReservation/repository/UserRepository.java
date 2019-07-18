@@ -6,7 +6,7 @@ import com.hcl.flightReservation.entity.User;
 
 public interface UserRepository extends JpaRepository<User, Long>{
 
-	boolean findByUserNameAndPassword(String userName, String password);
+	User findByUserNameAndPassword(String userName, String password);
 
 
 }

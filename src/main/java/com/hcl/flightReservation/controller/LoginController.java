@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hcl.flightReservation.entity.User;
 import com.hcl.flightReservation.exception.InvalidUserDataException;
 import com.hcl.flightReservation.service.UserService;
 
@@ -39,11 +40,12 @@ public class LoginController {
 			@RequestParam(value = "password") String password) {
 		try {
 			validateMandatoryElements(userName,password);
-			boolean userStatus= userService.loginUser(userName,password);
-			if(userStatus) {
-			System.out.println("login sucssfully");
+			User userStatus= userService.loginUser(userName,password);
+			
+			if(ObjectUtils.isEmpty(userStatus)) {
+				return new ResponseEntity<> ("Please check your credintials",HttpStatus.OK);
 			}else {
-				System.out.println("please check login credential");
+				return new ResponseEntity<> ("You are logged in successfully",HttpStatus.OK);
 			}
 				
 		} catch (InvalidUserDataException invalid) {
@@ -51,7 +53,7 @@ public class LoginController {
 		} catch(Exception e) {
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}		
-		return new ResponseEntity<>(HttpStatus.OK);
+		//return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 	// This function will check mandatory elements for login

@@ -12,7 +12,7 @@ public class UserService {
 	@Autowired
 	UserRepository userRepository;
 
-	public boolean loginUser(String userName, String password) {
+	public User loginUser(String userName, String password) {
 		return userRepository.findByUserNameAndPassword(userName,password);
 	}
 
