@@ -8,12 +8,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.hcl.flightReservation.entity.Flight;
 import com.hcl.flightReservation.entity.SearchFlight;
 import com.hcl.flightReservation.service.SearchFlightService;
 
-@Controller
+@RestController
 public class SearchFlightController {
 	
 	@Autowired
