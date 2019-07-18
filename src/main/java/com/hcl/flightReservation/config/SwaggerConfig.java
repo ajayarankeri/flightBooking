@@ -1,5 +1,5 @@
-package com.bank.InternetBanking.ConfigFiles;
-
+package com.hcl.flightReservation.config;
+g
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
