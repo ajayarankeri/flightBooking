@@ -37,6 +37,10 @@ public class Passenger {
 	
 	@Column(name="seat_no")
 	private String seatNo;
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="booking_id")
+	private Booking booking;
 
 	public Long getPassengerId() {
 		return passengerId;
