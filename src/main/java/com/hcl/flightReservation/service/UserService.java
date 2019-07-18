@@ -13,9 +13,8 @@ public class UserService {
 	@Autowired
 	UserRepository userrepo;
 	
-	public String  addUser(User user) {
+	public void  addUser(User user) {
 		userrepo.save(user);
-		return "sucess";
 	}
 }
 
