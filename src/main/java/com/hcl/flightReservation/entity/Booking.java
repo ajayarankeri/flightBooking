@@ -1,6 +1,9 @@
 package com.hcl.flightReservation.entity;
 
 import java.time.LocalDate;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -8,7 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -20,11 +24,11 @@ public class Booking {
 	@Column(name="booking_id")
 	private Long bookingId;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="flight_id")
 	private Flight flightId;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="user_id")
 	private User userId;
 	
@@ -33,6 +37,9 @@ public class Booking {
 	
 	@Column(name="booking_date")
 	private LocalDate bookingDate;
+	
+	@OneToMany(mappedBy = "bookingObject", cascade = CascadeType.ALL)
+    private Set<Passenger> passangers;
 
 	public Long getBookingId() {
 		return bookingId;
