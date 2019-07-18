@@ -32,7 +32,7 @@ public class Passenger {
 	@Column(name="age")
 	private int age;
 	
-	@Column(name="seat_no")
+	@Column(name="seat_no")	
 	private String seatNo;
 	
 	@ManyToOne(fetch = FetchType.EAGER)

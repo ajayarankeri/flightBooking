@@ -8,15 +8,17 @@ import com.hcl.flightReservation.repository.UserRepository;
 
 @Service
 public class UserService {
-
 	
 	@Autowired
-	UserRepository userrepo;
+	UserRepository userRepository;
+
+	public User loginUser(String userName, String password) {
+		return userRepository.findByUserNameAndPassword(userName,password);
+	}
+
 	
-	public String  addUser(User user) {
-		userrepo.save(user);
-		return "sucess";
+	public void  addUser(User user) {
+		userRepository.save(user);
 	}
 }
-
 
