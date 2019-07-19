@@ -22,7 +22,7 @@ public class SearchFlightController {
 	@PostMapping("/search")
      public ResponseEntity<List<Flight>> searchFlight(@RequestBody SearchFlight searchFlight) throws Exception{
 		
-		if(searchFlight.getArrival()==null&&searchFlight.getArrivalDestination()==null&&searchFlight.getDepartureSource()==null&&
+		if(searchFlight.getArrival()==null&&searchFlight.getDestination().isEmpty()&&searchFlight.getSource().isEmpty()&&
 				searchFlight.getDeparture()==null)
 			throw new Exception("Please fill all mandatory details");
 		

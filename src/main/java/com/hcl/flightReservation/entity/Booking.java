@@ -54,6 +54,9 @@ public class Booking implements Serializable {
     private Set<Passenger> passangers;
 	
 	
+	public Booking() {
+		super();
+	}
 
 	public Set<Passenger> getPassangers() {
 		return passangers;
