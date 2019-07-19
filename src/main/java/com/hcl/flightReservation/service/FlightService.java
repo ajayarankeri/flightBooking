@@ -2,6 +2,7 @@ package com.hcl.flightReservation.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -14,7 +15,7 @@ import com.hcl.flightReservation.entity.SearchFlight;
 import com.hcl.flightReservation.repository.FlightRepository;
 
 @Service
-public class SearchFlightService {
+public class FlightService {
 	
 	@Autowired
 	FlightRepository flightRepository;
@@ -54,6 +55,21 @@ public class SearchFlightService {
 	public void addNewFlight(Flight flight) {
 		flightRepository.save(flight);
 		
+	}
+
+	public Optional<Flight> flightDetails(long flightId,int Status) {
+		Optional<Flight> flightList=flightRepository.findById(flightId);
+		 if(flightList.isPresent()) {
+		 Flight flightObject=flightList.get();
+		 flightObject.setFlightStatus(Status);
+		flightRepository.save(flightObject);
+		}		
+		return flightList;
+	}
+
+	public List<Flight> fetchPendingApproval() {		
+		List<Flight> pendingList= flightRepository.findByFlightStatus(0);
+		return pendingList;
 	}
 
 }

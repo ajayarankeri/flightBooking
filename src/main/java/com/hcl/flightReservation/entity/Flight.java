@@ -22,7 +22,7 @@ public class Flight {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="flight_id")
-	private Long flightId;
+	private long flightId;
 	
 	@Column(name="flight_company")
 	private String flightCompany;
@@ -49,11 +49,11 @@ public class Flight {
 	private Double fare;
 
 
-	public Long getFlightId() {
+	public long getFlightId() {
 		return flightId;
 	}
 
-	public void setFlightId(Long flightId) {
+	public void setFlightId(long flightId) {
 		this.flightId = flightId;
 	}
 
@@ -97,6 +97,7 @@ public class Flight {
 	public void setDestination(String destination) {
 		this.destination = destination;
 	}
+
 
 	public int getFlightStatus() {
 		return flightStatus;

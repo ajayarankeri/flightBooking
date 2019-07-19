@@ -74,7 +74,6 @@ public class LoginController {
 		} catch(Exception e) {
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}		
-		//return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
 	@PostMapping("/addFlight")

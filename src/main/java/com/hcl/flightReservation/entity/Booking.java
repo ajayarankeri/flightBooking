@@ -1,9 +1,8 @@
 package com.hcl.flightReservation.entity;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,9 +15,18 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 @Entity
 @Table(name="booking")
-public class Booking {
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "bookingId")
+public class Booking implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5116993995766516663L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,7 +47,7 @@ public class Booking {
 	@Column(name="booking_date")
 	private LocalDate bookingDate;
 	
-	@OneToMany(mappedBy = "bookingObject", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "bookingObject", cascade = CascadeType.ALL,fetch=FetchType.LAZY)
     private Set<Passenger> passangers;
 	
 	
@@ -47,16 +55,22 @@ public class Booking {
 		super();
 	}
 
-	public Booking(Flight flightId, User userId, Double totalFare, LocalDate bookingDate,
-			Passenger...passangers) {
-		super();
+	public Set<Passenger> getPassangers() {
+		return passangers;
+	}
+
+	public Booking(Flight flightId, User userId, Double totalFare, LocalDate bookingDate) {
+		//super();
+		
+		System.out.println("passangesrs"+this);
 		
 		this.flightId = flightId;
 		this.userId = userId;
 		this.totalFare = totalFare;
 		this.bookingDate = bookingDate;
-		this.passangers = Stream.of(passangers).collect(Collectors.toSet());
-		this.passangers.forEach(x -> x.setBookingObject(this));
+		
+	 //	this.passangers = Stream.of(passangers).collect(Collectors.toSet());
+	//	this.passangers.forEach(x -> x.setBookingObject(this));
 	}
 
 	public Long getBookingId() {
