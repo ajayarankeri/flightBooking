@@ -1,40 +1,17 @@
 package com.hcl.flightReservation.entity;
 
-import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;
+ 
 
 public class SearchFlight {
 	
-	private DateTimeFormatter departure;
-	private DateTimeFormatter arrival;
-	private String departureSource;
-	private String arrivalDestination;
+	private LocalDateTime departure;
+	private LocalDateTime arrival;
+	private String source;
+	private String destination;
 	private String flightCompany;
 	private String sort;
 	
-	public DateTimeFormatter getDeparture() {
-		return departure;
-	}
-	public void setDeparture(DateTimeFormatter departure) {
-		this.departure = departure;
-	}
-	public DateTimeFormatter getArrival() {
-		return arrival;
-	}
-	public void setArrival(DateTimeFormatter arrival) {
-		this.arrival = arrival;
-	}
-	public String getDepartureSource() {
-		return departureSource;
-	}
-	public void setDepartureSource(String departureSource) {
-		this.departureSource = departureSource;
-	}
-	public String getArrivalDestination() {
-		return arrivalDestination;
-	}
-	public void setArrivalDestination(String arrivalDestination) {
-		this.arrivalDestination = arrivalDestination;
-	}
 	
 	public String getSort() {
 		return sort;
@@ -48,7 +25,28 @@ public class SearchFlight {
 	public void setFlightCompany(String flightCompany) {
 		this.flightCompany = flightCompany;
 	}
-	
-		
-
+	public LocalDateTime getDeparture() {
+		return departure;
+	}
+	public void setDeparture(LocalDateTime departure) {
+		this.departure = departure;
+	}
+	public LocalDateTime getArrival() {
+		return arrival;
+	}
+	public void setArrival(LocalDateTime arrival) {
+		this.arrival = arrival;
+	}
+	public String getSource() {
+		return source;
+	}
+	public void setSource(String source) {
+		this.source = source;
+	}
+	public String getDestination() {
+		return destination;
+	}
+	public void setDestination(String destination) {
+		this.destination = destination;
+	}
 }

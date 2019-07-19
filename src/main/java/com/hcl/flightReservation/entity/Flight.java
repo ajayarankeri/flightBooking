@@ -1,12 +1,16 @@
 package com.hcl.flightReservation.entity;
 
-import java.time.LocalDate;
+
+
+import java.time.LocalDateTime;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
 
 @Entity
 @Table(name="flights")
@@ -23,17 +27,20 @@ public class Flight {
 	@Column(name="flight_capacity")
 	private int flightCapacity;
 	
-	@Column(name="departure")
-	private LocalDate departure;
+	@Column(name="flight_status")
+    private int flight_status;
+    
+	@Column(name="departure_time")
+    private LocalDateTime departure;
 	
-	@Column(name="arrival")
-	private LocalDate arrival;
+    @Column(name="arrival_time")
+	private LocalDateTime arrival;
 	
-	@Column(name="departure_source")
-	private String departureSource;
+	@Column(name="source")
+	private String source;
 	
-	@Column(name="arrival_destination")
-	private String arrivalDestination;
+	@Column(name="destination")
+	private String destination;
 	
 	@Column(name="fare")
 	private Double fare;
@@ -62,38 +69,7 @@ public class Flight {
 		this.flightCapacity = flightCapacity;
 	}
 
-	public LocalDate getDeparture() {
-		return departure;
-	}
-
-	public void setDeparture(LocalDate departure) {
-		this.departure = departure;
-	}
-
-	public LocalDate getArrival() {
-		return arrival;
-	}
-
-	public void setArrival(LocalDate arrival) {
-		this.arrival = arrival;
-	}
-
-	public String getDepartureSource() {
-		return departureSource;
-	}
-
-	public void setDepartureSource(String departureSource) {
-		this.departureSource = departureSource;
-	}
-
-	public String getArrivalDestination() {
-		return arrivalDestination;
-	}
-
-	public void setArrivalDestination(String arrivalDestination) {
-		this.arrivalDestination = arrivalDestination;
-	}
-
+	
 	public Double getFare() {
 		return fare;
 	}
@@ -101,8 +77,29 @@ public class Flight {
 	public void setFare(Double fare) {
 		this.fare = fare;
 	}
+
+	public String getSource() {
+		return source;
+	}
+
+	public void setSource(String source) {
+		this.source = source;
+	}
+
+	public String getDestination() {
+		return destination;
+	}
+
+	public void setDestination(String destination) {
+		this.destination = destination;
+	}
 	
-	
-	
+	public int getFlight_status() {
+		return flight_status;
+	}
+
+	public void setFlight_status(int flight_status) {
+		this.flight_status = flight_status;
+	}
 }
 

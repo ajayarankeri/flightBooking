@@ -23,27 +23,28 @@ public class SearchFlightService {
 		
 		List<Flight> flightList = new ArrayList<Flight>();
 		
-		if(searchFlight.getFlightCompany()==null && searchFlight.getSort()==null) {
+		
+		if(searchFlight.getFlightCompany().isEmpty()&&searchFlight.getSort().isEmpty()) {
 			
-			flightList=flightRepository.searchFlight(searchFlight.getDeparture(), searchFlight.getArrival(), searchFlight.getArrivalDestination(), 
-					searchFlight.getDepartureSource());
+			flightList=flightRepository.searchFlight(searchFlight.getDeparture(), searchFlight.getArrival(), searchFlight.getSource(), 
+					searchFlight.getDestination());
 			
 		}
-		else if(searchFlight.getSort()==null&&searchFlight.getFlightCompany()!=null){
-			flightList=flightRepository.serachFlightByFlightName(searchFlight.getDeparture(), searchFlight.getArrival(), searchFlight.getArrivalDestination(), 
-					searchFlight.getDepartureSource(),searchFlight.getFlightCompany());
+		else if(searchFlight.getSort().isEmpty()&&(!searchFlight.getFlightCompany().isEmpty())){
+			flightList=flightRepository.serachFlightByFlightName(searchFlight.getDeparture(), searchFlight.getArrival(), searchFlight.getSource(), 
+					searchFlight.getDestination(),searchFlight.getFlightCompany());
 		}
 		
-		else if(searchFlight.getFlightCompany()==null && searchFlight.getSort().equalsIgnoreCase("fair"))
+		else if(searchFlight.getFlightCompany().isEmpty()&&searchFlight.getSort().equalsIgnoreCase("fare"))
 		{
 			Pageable pageable = PageRequest.of(0, 10, Sort.by("fare").ascending());
-			flightList=flightRepository.searchFlightByFare(searchFlight.getDeparture(), searchFlight.getArrival(), searchFlight.getArrivalDestination(), 
-					searchFlight.getDepartureSource(),pageable);
+			flightList=flightRepository.searchFlightByFare(searchFlight.getDeparture(), searchFlight.getArrival(), searchFlight.getSource(), 
+					searchFlight.getDestination(),pageable);
 		}
 		else {
 			Pageable pageable = PageRequest.of(0, 10, Sort.by("fare").ascending());
-			flightList=flightRepository.searchFlightByFareCompany(searchFlight.getDeparture(), searchFlight.getArrival(), searchFlight.getArrivalDestination(), 
-					searchFlight.getDepartureSource(),searchFlight.getFlightCompany(),pageable);
+			flightList=flightRepository.searchFlightByFareCompany(searchFlight.getDeparture(), searchFlight.getArrival(), searchFlight.getSource(), 
+					searchFlight.getDestination(),searchFlight.getFlightCompany(),pageable);
 			
 		}
 		return flightList;

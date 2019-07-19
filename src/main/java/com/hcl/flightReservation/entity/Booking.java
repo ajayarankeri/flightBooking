@@ -43,6 +43,9 @@ public class Booking {
     private Set<Passenger> passangers;
 	
 	
+	public Booking() {
+		super();
+	}
 
 	public Booking(Flight flightId, User userId, Double totalFare, LocalDate bookingDate,
 			Passenger...passangers) {
