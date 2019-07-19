@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hcl.flightReservation.entity.Flight;
 import com.hcl.flightReservation.entity.SearchFlight;
-import com.hcl.flightReservation.service.SearchFlightService;
+import com.hcl.flightReservation.service.FlightService;
 
 @RestController
 public class SearchFlightController {
 	
 	@Autowired
-	SearchFlightService searchFlightService;
+	FlightService searchFlightService;
 	
 	@PostMapping("/search")
      public ResponseEntity<List<Flight>> searchFlight(@RequestBody SearchFlight searchFlight) throws Exception{

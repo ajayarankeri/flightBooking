@@ -11,9 +11,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 
 @Entity
 @Table(name="flights")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Flight {
 
 	@Id
@@ -28,7 +31,7 @@ public class Flight {
 	private int flightCapacity;
 	
 	@Column(name="flight_status")
-    private int flight_status;
+    private int flightStatus;
     
 	@Column(name="departure_time")
     private LocalDateTime departure;
@@ -44,9 +47,7 @@ public class Flight {
 	
 	@Column(name="fare")
 	private Double fare;
-	
-	@Column(name="flight_status")
-	private int flightStats;
+
 
 	public Long getFlightId() {
 		return flightId;
@@ -96,13 +97,29 @@ public class Flight {
 	public void setDestination(String destination) {
 		this.destination = destination;
 	}
-	
-	public int getFlight_status() {
-		return flight_status;
+
+	public int getFlightStatus() {
+		return flightStatus;
 	}
 
-	public void setFlight_status(int flight_status) {
-		this.flight_status = flight_status;
+	public void setFlightStatus(int flightStatus) {
+		this.flightStatus = flightStatus;
+	}
+
+	public LocalDateTime getDeparture() {
+		return departure;
+	}
+
+	public void setDeparture(LocalDateTime departure) {
+		this.departure = departure;
+	}
+
+	public LocalDateTime getArrival() {
+		return arrival;
+	}
+
+	public void setArrival(LocalDateTime arrival) {
+		this.arrival = arrival;
 	}
 	
 	
