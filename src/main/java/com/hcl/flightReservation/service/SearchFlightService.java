@@ -51,4 +51,9 @@ public class SearchFlightService {
 		
 	}
 
+	public void addNewFlight(Flight flight) {
+		flightRepository.save(flight);
+		
+	}
+
 }
