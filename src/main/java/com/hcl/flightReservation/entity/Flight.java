@@ -44,6 +44,9 @@ public class Flight {
 	
 	@Column(name="fare")
 	private Double fare;
+	
+	@Column(name="flight_status")
+	private int flightStats;
 
 	public Long getFlightId() {
 		return flightId;
@@ -101,5 +104,7 @@ public class Flight {
 	public void setFlight_status(int flight_status) {
 		this.flight_status = flight_status;
 	}
+	
+	
 }
 
