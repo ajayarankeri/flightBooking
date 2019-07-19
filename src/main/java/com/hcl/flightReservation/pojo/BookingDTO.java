@@ -3,21 +3,13 @@ package com.hcl.flightReservation.pojo;
 import java.time.LocalDate;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-
-import com.hcl.flightReservation.entity.Flight;
 import com.hcl.flightReservation.entity.Passenger;
-import com.hcl.flightReservation.entity.User;
+
 
 public class BookingDTO {
-//	
-private int flightId;
 	
+private int flightId;
+
 	private long userId;
 
 	
