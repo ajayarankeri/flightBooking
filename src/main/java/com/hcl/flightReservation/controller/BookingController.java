@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hcl.flightReservation.entity.Booking;
 import com.hcl.flightReservation.exception.NoTicketException;
 import com.hcl.flightReservation.exception.ResourceNotFoundException;
 import com.hcl.flightReservation.pojo.BookingDTO;
@@ -24,20 +23,13 @@ public class BookingController {
 
 	@PostMapping("")
 	public ResponseEntity<Object> saveBooking(@RequestBody BookingDTO booking) throws ResourceNotFoundException, NoTicketException{
-		
-	
-		bookingService.saveBooking(booking);
-		
-		return new ResponseEntity<> ("record saved sucessfully",HttpStatus.OK);
-		
+		bookingService.saveBooking(booking);	
+		return new ResponseEntity<> ("record saved sucessfully",HttpStatus.OK);	
 	}
 	
 	
 	@GetMapping("/history/{id}")
 	public ResponseEntity<Object> saveBooking(@PathVariable("id")long id){
-		
-		
 	 return new ResponseEntity<> (bookingService.getBookingHistory(bookingService.getUserById(id)),HttpStatus.OK);
-		//return new ResponseEntity<> (bookingService.getBookingHistory(id),HttpStatus.OK);
 	}
 }

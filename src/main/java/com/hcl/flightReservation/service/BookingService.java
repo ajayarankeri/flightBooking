@@ -14,7 +14,6 @@ import com.hcl.flightReservation.entity.User;
 import com.hcl.flightReservation.exception.NoTicketException;
 import com.hcl.flightReservation.exception.ResourceNotFoundException;
 import com.hcl.flightReservation.pojo.BookingDTO;
-import com.hcl.flightReservation.pojo.BookingHistoryDTO;
 import com.hcl.flightReservation.repository.BookingRepository;
 import com.hcl.flightReservation.repository.FlightRepository;
 import com.hcl.flightReservation.repository.PassengerRepository;
