@@ -26,7 +26,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 	        for(ObjectError error : ex.getBindingResult().getAllErrors()) {
 	            details.add(error.getDefaultMessage());
 	        }
-	        ErrorResponse error = new ErrorResponse("Validation Failed", details);
+	        ErrorResponse error = new ErrorResponse("Validation Failed", details,Integer.toString(HttpStatus.BAD_REQUEST.value()));
 	        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
 	    }
 	 
@@ -35,16 +35,18 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 	    public final ResponseEntity<Object> handleAllExceptions(NoTicketException ex, WebRequest request) {
 	        List<String> details = new ArrayList<>();
 	        details.add(ex.getMessage());
-	        ErrorResponse error = new ErrorResponse("Server Error", details);
+	        ErrorResponse error = new ErrorResponse("Server Error", details,Integer.toString(HttpStatus.BAD_REQUEST.value()));
 	        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
 	    }
 	 
 	 @ExceptionHandler(ResourceNotFoundException.class)
-	 @ResponseStatus(value = HttpStatus.NOT_FOUND)
-	    public final ResponseEntity<Object> handleResourceNotFoundException(NoTicketException ex, WebRequest request) {
+	@ResponseStatus(value = HttpStatus.NOT_FOUND)
+	    public final ResponseEntity<ErrorResponse> handleResourceNotFoundException(ResourceNotFoundException ex, WebRequest request) {
 	        List<String> details = new ArrayList<>();
 	        details.add(ex.getMessage());
-	        ErrorResponse error = new ErrorResponse("Server Error", details);
-	        return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
+	        
+	        System.out.println(HttpStatus.NOT_FOUND.value());
+	        ErrorResponse error = new ErrorResponse("Server Error", details,Integer.toString(HttpStatus.NOT_FOUND.value()));
+	        return new ResponseEntity<ErrorResponse>(error, HttpStatus.NOT_FOUND);
 	    }
 }

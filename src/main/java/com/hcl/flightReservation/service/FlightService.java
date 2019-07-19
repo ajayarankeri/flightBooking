@@ -14,7 +14,7 @@ import com.hcl.flightReservation.entity.SearchFlight;
 import com.hcl.flightReservation.repository.FlightRepository;
 
 @Service
-public class SearchFlightService {
+public class FlightService {
 	
 	@Autowired
 	FlightRepository flightRepository;

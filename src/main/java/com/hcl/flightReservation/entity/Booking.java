@@ -62,15 +62,6 @@ public class Booking implements Serializable {
 		return passangers;
 	}
 
-//	public void setPassangers(Set<Passenger> passangers) {
-//		
-//		this.passangers = passangers;
-//	}
-
-	public Booking() {
-		super();
-	}
-
 	public Booking(Flight flightId, User userId, Double totalFare, LocalDate bookingDate) {
 		//super();
 		

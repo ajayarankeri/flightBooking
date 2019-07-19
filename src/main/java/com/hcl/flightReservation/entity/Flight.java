@@ -28,7 +28,7 @@ public class Flight {
 	private int flightCapacity;
 	
 	@Column(name="flight_status")
-    private int flight_status;
+    private int flightStatus;
     
 	@Column(name="departure_time")
     private LocalDateTime departure;
@@ -94,12 +94,12 @@ public class Flight {
 		this.destination = destination;
 	}
 	
-	public int getFlight_status() {
-		return flight_status;
+	public int getFlightStatus() {
+		return flightStatus;
 	}
 
-	public void setFlight_status(int flight_status) {
-		this.flight_status = flight_status;
+	public void setFlightStatus(int flightStatus) {
+		this.flightStatus = flightStatus;
 	}
 }
 
