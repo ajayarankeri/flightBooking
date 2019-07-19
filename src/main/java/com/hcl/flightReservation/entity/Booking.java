@@ -1,5 +1,6 @@
 package com.hcl.flightReservation.entity;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Iterator;
 import java.util.Set;
@@ -17,9 +18,18 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 @Entity
 @Table(name="booking")
-public class Booking {
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "bookingId")
+public class Booking implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5116993995766516663L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -49,10 +59,10 @@ public class Booking {
 		return passangers;
 	}
 
-	public void setPassangers(Set<Passenger> passangers) {
-		
-		this.passangers = passangers;
-	}
+//	public void setPassangers(Set<Passenger> passangers) {
+//		
+//		this.passangers = passangers;
+//	}
 
 	public Booking() {
 		super();

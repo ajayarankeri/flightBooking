@@ -11,6 +11,8 @@ import com.hcl.flightReservation.entity.Booking;
 import com.hcl.flightReservation.entity.Flight;
 import com.hcl.flightReservation.entity.Passenger;
 import com.hcl.flightReservation.entity.User;
+import com.hcl.flightReservation.exception.NoTicketException;
+import com.hcl.flightReservation.exception.ResourceNotFoundException;
 import com.hcl.flightReservation.pojo.BookingDTO;
 import com.hcl.flightReservation.pojo.BookingHistoryDTO;
 import com.hcl.flightReservation.repository.BookingRepository;
@@ -33,10 +35,16 @@ public class BookingService {
 	@Autowired
 	PassengerRepository passengerRepository;
 	
-	 public void  saveBooking(BookingDTO booking) {
+	 public void  saveBooking(BookingDTO booking) throws ResourceNotFoundException, NoTicketException {
 		 
-		 User user=userRepository.findById(booking.getUserId()).get();
-		 Flight flight=flightRepository.findById(booking.getFlightId()).get();
+		 User user=userRepository.findById(booking.getUserId()).orElseThrow(()->   new ResourceNotFoundException("User not exist"));
+		 Flight flight=flightRepository.findByFlightId(booking.getFlightId());
+		 if(null==flight) {
+			 throw  new ResourceNotFoundException("Flight not exist");
+		 }
+		 if(flight.getFlightCapacity()==0) {
+			  throw new NoTicketException("No seat avalible");
+			}
 		 
 		 Booking bookingObject=new Booking(flight, user, booking.getTotalFare(), booking.getBookingDate());
 		  bookingRepository.save(bookingObject);
@@ -47,6 +55,10 @@ public class BookingService {
 			pass.setBookingObject(bookingObject);
 		    passengerRepository.save(pass);
 		}
+		
+		
+		flight.setFlightCapacity(flight.getFlightCapacity()-booking.getPassangers().size());
+		flightRepository.save(flight);
 	 }
 	 
 	 public User getUserById(long id) {
@@ -55,8 +67,7 @@ public class BookingService {
 	 
 	 
 	 public List<Booking> getBookingHistory(User userid){
-	 return bookingRepository.findByUserId(userid);
-		// return bookingRepository.findBookingHistory(userid);
+ return bookingRepository.findByUserId(userid);
 	 }
 
 }

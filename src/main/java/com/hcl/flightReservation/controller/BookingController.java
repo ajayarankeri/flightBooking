@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hcl.flightReservation.entity.Booking;
+import com.hcl.flightReservation.exception.NoTicketException;
+import com.hcl.flightReservation.exception.ResourceNotFoundException;
 import com.hcl.flightReservation.pojo.BookingDTO;
 import com.hcl.flightReservation.service.BookingService;
 
@@ -21,7 +23,7 @@ public class BookingController {
 	BookingService bookingService;
 
 	@PostMapping("")
-	public ResponseEntity<Object> saveBooking(@RequestBody BookingDTO booking){
+	public ResponseEntity<Object> saveBooking(@RequestBody BookingDTO booking) throws ResourceNotFoundException, NoTicketException{
 		
 	
 		bookingService.saveBooking(booking);

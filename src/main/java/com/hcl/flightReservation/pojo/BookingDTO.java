@@ -16,7 +16,7 @@ import com.hcl.flightReservation.entity.User;
 
 public class BookingDTO {
 //	
-private long flightId;
+private int flightId;
 	
 	private long userId;
 
@@ -30,11 +30,11 @@ private long flightId;
 	
    
 
-	public long getFlightId() {
+	public int getFlightId() {
 		return flightId;
 	}
 
-	public void setFlightId(long flightId) {
+	public void setFlightId(int flightId) {
 		this.flightId = flightId;
 	}
 

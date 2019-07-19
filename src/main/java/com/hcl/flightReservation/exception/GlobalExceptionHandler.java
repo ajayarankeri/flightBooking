@@ -11,12 +11,13 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import com.hcl.flightReservation.pojo.ErrorResponse;
 
-@ControllerAdvice
+@RestControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
 	 @Override
@@ -36,5 +37,14 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 	        details.add(ex.getMessage());
 	        ErrorResponse error = new ErrorResponse("Server Error", details);
 	        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+	    }
+	 
+	 @ExceptionHandler(ResourceNotFoundException.class)
+	 @ResponseStatus(value = HttpStatus.NOT_FOUND)
+	    public final ResponseEntity<Object> handleResourceNotFoundException(NoTicketException ex, WebRequest request) {
+	        List<String> details = new ArrayList<>();
+	        details.add(ex.getMessage());
+	        ErrorResponse error = new ErrorResponse("Server Error", details);
+	        return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
 	    }
 }

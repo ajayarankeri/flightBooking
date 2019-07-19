@@ -13,7 +13,7 @@ import com.hcl.flightReservation.entity.Flight;
 
 
 @Repository
-public interface FlightRepository extends JpaRepository<Flight, Integer>,PagingAndSortingRepository<Flight, Integer>{
+public interface FlightRepository extends JpaRepository<Flight, Long>,PagingAndSortingRepository<Flight, Long>{
 
 	@Query(value="select * from flight where departure= (:departure) and arrival= (:arrival) and departure_source= (:departureSource)"
 			+ "and arrival_destination=(:arrivalDestination)", nativeQuery=true)
@@ -34,5 +34,5 @@ public interface FlightRepository extends JpaRepository<Flight, Integer>,PagingA
 			String arrivalDestination, String departureSource, String flightCompany, Pageable pageable);
 		
 	
-	
+	Flight findByFlightId(int flightId);
 }
